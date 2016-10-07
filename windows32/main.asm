@@ -55,7 +55,8 @@ loopStart:
 	mov eax, ebx							; dividend := gcd
 	mov ebx, ecx							; gcd := remainder
 	
-	mov edx, 0								; prepare for division
+	mov edx, 0								; EDX will be used as the higher order bits for the dividend
+											; we must set EDX to 0 before dividing because the higher order bits are not significant
 	div ebx									; divide dividend by gcd (to get dividend mod gcd)
 	mov ecx, edx							; remainder := dividend mod gcd
 	cmp ecx, 0								; remainder = 0?
