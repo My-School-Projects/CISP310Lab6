@@ -1,4 +1,4 @@
-Microsoft (R) Macro Assembler Version 11.00.61030.0	    10/06/16 17:53:28
+Microsoft (R) Macro Assembler Version 11.00.61030.0	    10/06/16 18:01:35
 main.asm						     Page 1 - 1
 
 
@@ -37,19 +37,19 @@ main.asm						     Page 1 - 1
 
 					; inputString will be used to store the user's inputs in ASCII coded decimal form.
 					; It is 11 characters + Null terminator, because the most characters you could need
-					; to express a signed double word is 11 characters (-2147483648d is the longest number
+					; to express a signed double word is 10 characters (4294967295d is the longest number
 					; representable as a DWORD)
- 00000046  0000000B [			inputString BYTE 11 DUP ("X"), 0
+ 00000046  0000000A [			inputString BYTE 10 DUP ("X"), 0
 	    58
 	   ] 00
 
 					; gcdString will be used with dtoa, which expects 11 characters + Null terminator
- 00000052  0000000B [			gcdString BYTE 11 DUP ("X"), 0	; String to store gcd in decimal for output
+ 00000051  0000000B [			gcdString BYTE 11 DUP ("X"), 0	; String to store gcd in decimal for output
 	    58
 	   ] 00
 					
 					; gcdOutputLabel will be used to label the gcd when it is displayed
- 0000005E 47 72 65 61 74		gcdOutputLabel BYTE "Greatest Common Divisor"
+ 0000005D 47 72 65 61 74		gcdOutputLabel BYTE "Greatest Common Divisor"
 	   65 73 74 20 43
 	   6F 6D 6D 6F 6E
 	   20 44 69 76 69
@@ -101,7 +101,7 @@ main.asm						     Page 1 - 1
  000000A3			_MainProc ENDP
 
 				END   ; end of source code
-Microsoft (R) Macro Assembler Version 11.00.61030.0	    10/06/16 17:53:28
+Microsoft (R) Macro Assembler Version 11.00.61030.0	    10/06/16 18:01:35
 main.asm						     Symbols 2 - 1
 
 
@@ -125,7 +125,7 @@ Segments and Groups:
 
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
-_DATA  . . . . . . . . . . . . .	32 Bit	 00000075 Para	  Public  'DATA'	
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000074 Para	  Public  'DATA'	
 _TEXT  . . . . . . . . . . . . .	32 Bit	 000000A3 Para	  Public  'CODE'	
 
 
@@ -156,8 +156,8 @@ _showOutput  . . . . . . . . . .	L Near	 00000000 FLAT	External
 atodproc . . . . . . . . . . . .	L Near	 00000000 FLAT	External
 atowproc . . . . . . . . . . . .	L Near	 00000000 FLAT	External
 dtoaproc . . . . . . . . . . . .	L Near	 00000000 FLAT	External
-gcdOutputLabel . . . . . . . . .	Byte	 0000005E _DATA	
-gcdString  . . . . . . . . . . .	Byte	 00000052 _DATA	
+gcdOutputLabel . . . . . . . . .	Byte	 0000005D _DATA	
+gcdString  . . . . . . . . . . .	Byte	 00000051 _DATA	
 inputString  . . . . . . . . . .	Byte	 00000046 _DATA	
 number1Prompt  . . . . . . . . .	Byte	 00000000 _DATA	
 number2Prompt  . . . . . . . . .	Byte	 00000020 _DATA	

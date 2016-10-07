@@ -16,9 +16,9 @@ INCLUDE io.h   ; header file for input/output
 
 	; inputString will be used to store the user's inputs in ASCII coded decimal form.
 	; It is 11 characters + Null terminator, because the most characters you could need
-	; to express a signed double word is 11 characters (-2147483648d is the longest number
+	; to express a signed double word is 10 characters (4294967295d is the longest number
 	; representable as a DWORD)
-	inputString BYTE 11 DUP ("X"), 0
+	inputString BYTE 10 DUP ("X"), 0
 
 	; gcdString will be used with dtoa, which expects 11 characters + Null terminator
 	gcdString BYTE 11 DUP ("X"), 0	; String to store gcd in decimal for output
@@ -43,11 +43,11 @@ _MainProc PROC
 	; ecx = remainder
 	; eax = dividend
 
-	input number1Prompt, inputString, 11	; get input from user (maximum 11 characters, as explained above at inputString)
+	input number1Prompt, inputString, 10	; get input from user (maximum 10 characters, as explained above at inputString)
 	atod inputString						; convert input from ASCII coded decimal to binary integer (stored in EAX)
 	mov ebx, eax							; gcd := user input
 
-	input number2Prompt, inputString, 11	; get input from user
+	input number2Prompt, inputString, 10	; get input from user
 	atod inputString						; convert input from string to binary integer (stored in EAX)
 	mov ecx, eax							; remainder := user input
 
@@ -55,7 +55,7 @@ loopStart:
 	mov eax, ebx							; dividend := gcd
 	mov ebx, ecx							; gcd := remainder
 	
-	cdq										; prepare for division
+	mov edx, 0								; prepare for division
 	div ebx									; divide dividend by gcd (to get dividend mod gcd)
 	mov ecx, edx							; remainder := dividend mod gcd
 	cmp ecx, 0								; remainder = 0?
